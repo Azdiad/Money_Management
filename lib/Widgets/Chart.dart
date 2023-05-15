@@ -44,7 +44,7 @@ class _chartsState extends State<charts> {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 300,
+      // height: 300,
       child: SfCartesianChart(
         primaryXAxis: CategoryAxis(isInversed: true),
         series: <SplineSeries<datas, String>>[
