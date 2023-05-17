@@ -219,8 +219,9 @@ class _HomesState extends State<Homes> {
                               Text(
                                 'Income',
                                 style: TextStyle(
-                                  color: Color.fromARGB(180, 255, 255, 255),
-                                ),
+                                    color: Color.fromARGB(180, 255, 255, 255),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -232,8 +233,9 @@ class _HomesState extends State<Homes> {
                               Text(
                                 'Expense',
                                 style: TextStyle(
-                                  color: Color.fromARGB(180, 255, 255, 255),
-                                ),
+                                    color: Color.fromARGB(180, 255, 255, 255),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             ],
                           ),

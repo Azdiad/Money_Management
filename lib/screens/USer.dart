@@ -1,8 +1,12 @@
+import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hive/hive.dart';
+import 'package:money/Model/added.dart';
 import 'package:money/Widgets/Bottom%20Nav.dart';
+import 'package:money/Widgets/Chart.dart';
 import 'package:money/screens/Terms.dart';
 
 class usersettings extends StatefulWidget {
@@ -76,9 +80,17 @@ class _usersettingsState extends State<usersettings> {
                           width: 350,
                           height: 50,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 15.0,
+                                spreadRadius: 10,
+                                offset: Offset(4, 4),
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(60),
                             ),
                           ),
                           child: Center(
@@ -108,12 +120,20 @@ class _usersettingsState extends State<usersettings> {
                           });
                         },
                         child: Container(
-                          width: 350,
+                          width: 300,
                           height: 50,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 15.0,
+                                spreadRadius: 10,
+                                offset: Offset(4, 4),
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(60),
                             ),
                           ),
                           child: Center(
@@ -140,12 +160,20 @@ class _usersettingsState extends State<usersettings> {
                           );
                         },
                         child: Container(
-                          width: 350,
+                          width: 250,
                           height: 50,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 15.0,
+                                spreadRadius: 10,
+                                offset: Offset(4, 4),
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(60),
                             ),
                           ),
                           child: Center(
@@ -169,12 +197,20 @@ class _usersettingsState extends State<usersettings> {
                           });
                         },
                         child: Container(
-                          width: 350,
+                          width: 200,
                           height: 50,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 15.0,
+                                spreadRadius: 10,
+                                offset: Offset(4, 4),
+                              )
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(60),
                             ),
                           ),
                           child: Center(
@@ -191,20 +227,33 @@ class _usersettingsState extends State<usersettings> {
                   ),
                   Row(
                     children: [
-                      Container(
-                        width: 350,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {});
+                        },
+                        child: Container(
+                          width: 150,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 15.0,
+                                spreadRadius: 10,
+                                offset: Offset(4, 4),
+                              )
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(60),
+                            ),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Reset All',
-                            style: TextStyle(
-                              fontSize: 20,
+                          child: Center(
+                            child: Text(
+                              'Reset All',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ),

@@ -218,7 +218,6 @@ class _addingState extends State<adding> {
                                   child: FloatingActionButton(
                                     heroTag: 'bottomnavs',
                                     onPressed: () {
-                                      print('hi');
                                       setState(() {
                                         var add = added(
                                             amount: _amountController.text,

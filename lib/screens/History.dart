@@ -1,3 +1,4 @@
+import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,6 +15,7 @@ class transaction_history extends StatefulWidget {
 class _transaction_historyState extends State<transaction_history> {
   var history;
   final Box = Hive.box<added>('data');
+  TextEditingController searchController = TextEditingController();
 
   List<Map<String, dynamic>> _transactionslist = [];
 
@@ -30,6 +32,19 @@ class _transaction_historyState extends State<transaction_history> {
                     child: _head(),
                   ),
                   SliverToBoxAdapter(
+                    child: AnimSearchBar(
+                      width: MediaQuery.of(context).size.width,
+                      textController: searchController,
+                      onSuffixTap: () {
+                        setState(() {
+                          searchController.clear();
+                        });
+                      },
+                      onSubmitted: (p0) {},
+                      helpText: 'Search for..',
+                    ),
+                  ),
+                  SliverToBoxAdapter(
                     child: Padding(
                       padding:
                           const EdgeInsets.only(left: 10, right: 10, top: 20),
@@ -41,17 +56,7 @@ class _transaction_historyState extends State<transaction_history> {
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          bottomnavs(initialIndex: 2),
-                                    ),
-                                  );
-                                },
-                                child: Text('All'))
+                            Text('All')
                           ]),
                     ),
                   ),
