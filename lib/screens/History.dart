@@ -19,57 +19,85 @@ class _transaction_historyState extends State<transaction_history> {
   final Box = Hive.box<added>('data');
   TextEditingController searchController = TextEditingController();
 
-  List<Map<String, dynamic>> _transactionslist = [];
+  List<added> _transactionslist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _transactionslist = Box.values.toList().cast<added>().reversed.toList();
+  }
+
+  void _filterTransactions(String query) {
+    setState(() {
+      _transactionslist = Box.values
+          .cast<added>()
+          .where((transaction) => transaction.description
+              .toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList()
+          .reversed
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: ValueListenableBuilder(
-            valueListenable: Box.listenable(),
-            builder: (context, value, child) {
-              return CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: _head(),
+          valueListenable: Box.listenable(),
+          builder: (context, value, child) {
+            return CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: _head(),
+                ),
+                SliverToBoxAdapter(
+                  child: AnimSearchBar(
+                    width: MediaQuery.of(context).size.width,
+                    textController: searchController,
+                    onSuffixTap: () {
+                      setState(() {
+                        searchController.clear();
+                        _filterTransactions('');
+                      });
+                    },
+                    onSubmitted: _filterTransactions,
+                    helpText: 'Search for..',
                   ),
-                  SliverToBoxAdapter(
-                    child: AnimSearchBar(
-                      width: MediaQuery.of(context).size.width,
-                      textController: searchController,
-                      onSuffixTap: () {
-                        setState(() {
-                          searchController.clear();
-                        });
-                      },
-                      onSubmitted: (p0) {},
-                      helpText: 'Search for..',
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Transactions',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text('All'),
+                      ],
                     ),
                   ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 20),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Transactions',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text('All')
-                          ]),
-                    ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      history = _transactionslist[index];
+                      return get(index, history);
+                    },
+                    childCount: _transactionslist.length,
                   ),
-                  SliverList(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                    history = Box.values.toList().reversed.toList()[index];
-                    return get(index, history);
-                  }, childCount: Box.length))
-                ],
-              );
-            }),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -102,8 +130,7 @@ class _transaction_historyState extends State<transaction_history> {
   }
 
   Widget _head() {
-    return //
-        Stack(
+    return Stack(
       alignment: Alignment.topLeft,
       children: [
         Container(
@@ -112,8 +139,9 @@ class _transaction_historyState extends State<transaction_history> {
           decoration: BoxDecoration(
             color: Color.fromARGB(180, 0, 139, 139),
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(60),
-                bottomRight: Radius.circular(60)),
+              bottomLeft: Radius.circular(60),
+              bottomRight: Radius.circular(60),
+            ),
           ),
           child: Center(
               child: Text(
