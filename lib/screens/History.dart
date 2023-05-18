@@ -44,59 +44,71 @@ class _transaction_historyState extends State<transaction_history> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: Box.listenable(),
-          builder: (context, value, child) {
-            return CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: _head(),
-                ),
-                SliverToBoxAdapter(
-                  child: AnimSearchBar(
-                    width: MediaQuery.of(context).size.width,
-                    textController: searchController,
-                    onSuffixTap: () {
-                      setState(() {
-                        searchController.clear();
-                        _filterTransactions('');
-                      });
-                    },
-                    onSubmitted: _filterTransactions,
-                    helpText: 'Search for..',
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color.fromRGBO(35, 237, 118, 0.767),
+                Color.fromARGB(183, 13, 192, 241),
+              ],
+            ),
+          ),
+          child: ValueListenableBuilder(
+            valueListenable: Box.listenable(),
+            builder: (context, value, child) {
+              return CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: _head(),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Transactions',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text('All'),
-                      ],
+                  SliverToBoxAdapter(
+                    child: AnimSearchBar(
+                      width: MediaQuery.of(context).size.width,
+                      textController: searchController,
+                      onSuffixTap: () {
+                        setState(() {
+                          searchController.clear();
+                          _filterTransactions('');
+                        });
+                      },
+                      onSubmitted: _filterTransactions,
+                      helpText: 'Search for..',
                     ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      history = _transactionslist[index];
-                      return get(index, history);
-                    },
-                    childCount: _transactionslist.length,
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Transactions',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text('All'),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        history = _transactionslist[index];
+                        return get(index, history);
+                      },
+                      childCount: _transactionslist.length,
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
