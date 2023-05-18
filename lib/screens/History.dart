@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:money/Model/added.dart';
+import 'package:money/screens/Aftertaplist.dart';
 
 class transaction_history extends StatefulWidget {
   const transaction_history({super.key});
@@ -89,6 +90,14 @@ class _transaction_historyState extends State<transaction_history> {
             fontSize: 19,
             color: history.type == 'Income' ? Colors.green : Colors.red),
       ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TransactionDetailsPage(history: history),
+          ),
+        );
+      },
     );
   }
 

@@ -43,6 +43,8 @@ dependencies:
   shared_preferences: ^2.1.0
   motion: ^1.4.0
   anim_search_bar: ^2.0.3
+  shimmer_animation: ^2.1.0+1
+  
   
 
 dev_dependencies:
