@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/widgets.dart';
 import 'package:money/Model/added.dart';
 import 'package:money/Utility/Utils.dart';
@@ -45,37 +47,37 @@ class _chartsState extends State<charts> {
     return Container(
       width: MediaQuery.of(context).size.width,
       // height: 300,
-      child: SfCartesianChart(
-        primaryXAxis: CategoryAxis(isInversed: true),
-        series: <SplineSeries<datas, String>>[
-          SplineSeries<datas, String>(
-            color: Color.fromARGB(225, 0, 139, 139),
-            width: 3,
-            dataSource: <datas>[
-              ...List.generate(
-                time(a!, b ? true : false).length,
-                (index) {
-                  return datas(
-                      j
-                          ? b
-                              ? a![index].dates.hour.toString()
-                              : a![index].dates.day.toString()
-                          : a![index].dates.month.toString(),
-                      b
-                          ? index > 0
-                              ? time(a!, true)[index] +
-                                  time(a!, true)[index - 1]
-                              : time(a!, true)[index]
-                          : index > 0
-                              ? time(a!, false)[index] +
-                                  time(a!, false)[index - 1]
-                              : time(a!, false)[index]);
-                },
-              )
-            ],
-            xValueMapper: (datas sales, _) => sales.year,
-            yValueMapper: (datas sales, _) => sales.sales,
-          ),
+      child: SfCircularChart(
+        // primaryXAxis: CategoryAxis(isInversed: true),
+        series: <PieSeries<datas, String>>[
+          PieSeries<datas, String>(
+              // color: Color.fromARGB(225, 0, 139, 139),
+              // width: 3,
+              dataSource: <datas>[
+                ...List.generate(
+                  time(a!, b ? true : false).length,
+                  (index) {
+                    return datas(
+                        j
+                            ? b
+                                ? a![index].dates.hour.toString()
+                                : a![index].dates.day.toString()
+                            : a![index].dates.month.toString(),
+                        b
+                            ? index > 0
+                                ? time(a!, true)[index] +
+                                    time(a!, true)[index - 1]
+                                : time(a!, true)[index]
+                            : index > 0
+                                ? time(a!, false)[index] +
+                                    time(a!, false)[index - 1]
+                                : time(a!, false)[index]);
+                  },
+                )
+              ],
+              xValueMapper: (datas sales, _) => sales.year,
+              yValueMapper: (datas sales, _) => sales.sales,
+              dataLabelSettings: DataLabelSettings(isVisible: true)),
         ],
       ),
     );

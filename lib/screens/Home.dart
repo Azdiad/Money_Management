@@ -27,6 +27,7 @@ class _HomesState extends State<Homes> {
   var history;
   final Box = Hive.box<added>('data');
 
+  // ignore: unused_field
   List<Map<String, dynamic>> _transactionslist = [];
 
   @override

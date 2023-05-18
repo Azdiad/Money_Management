@@ -1,12 +1,11 @@
-import 'dart:html';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hive/hive.dart';
 import 'package:money/Model/added.dart';
+import 'package:money/Utility/Utils.dart';
 import 'package:money/Widgets/Bottom%20Nav.dart';
-import 'package:money/Widgets/Chart.dart';
+// import 'package:money/screens/History.dart';
 import 'package:money/screens/Terms.dart';
 
 class usersettings extends StatefulWidget {
@@ -229,7 +228,9 @@ class _usersettingsState extends State<usersettings> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          setState(() {});
+                          setState(() {
+                            Box.clear();
+                          });
                         },
                         child: Container(
                           width: 150,
@@ -252,8 +253,9 @@ class _usersettingsState extends State<usersettings> {
                             child: Text(
                               'Reset All',
                               style: TextStyle(
-                                fontSize: 20,
-                              ),
+                                  color: Colors.redAccent,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
