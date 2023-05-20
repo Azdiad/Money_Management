@@ -1,87 +1,44 @@
-// ignore_for_file: must_be_immutable
-
-import 'package:flutter/widgets.dart';
-import 'package:money/Model/added.dart';
-import 'package:money/Utility/Utils.dart';
+import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-class charts extends StatefulWidget {
-  int indexx;
-  charts({Key? key, required this.indexx}) : super(key: key);
+class PieChart extends StatelessWidget {
+  final double income;
+  final double expense;
+  final int indexx;
 
-  @override
-  State<charts> createState() => _chartsState();
-}
-
-class _chartsState extends State<charts> {
-  List<added>? a;
-  bool b = true;
-  bool j = true;
+  const PieChart(
+      {Key? key,
+      required this.income,
+      required this.expense,
+      required this.indexx})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    switch (widget.indexx) {
-      case 0:
-        a = today();
-        b = true;
-        j = true;
-        break;
-      case 1:
-        a = week();
-        b = false;
-        j = true;
-        break;
-      case 2:
-        a = month();
-        b = false;
-        j = true;
-        break;
-
-      default:
-    }
-
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      // height: 300,
-      child: SfCircularChart(
-        // primaryXAxis: CategoryAxis(isInversed: true),
-        series: <PieSeries<datas, String>>[
-          PieSeries<datas, String>(
-              // color: Color.fromARGB(225, 0, 139, 139),
-              // width: 3,
-              dataSource: <datas>[
-                ...List.generate(
-                  time(a!, b ? true : false).length,
-                  (index) {
-                    return datas(
-                        j
-                            ? b
-                                ? a![index].dates.hour.toString()
-                                : a![index].dates.day.toString()
-                            : a![index].dates.month.toString(),
-                        b
-                            ? index > 0
-                                ? time(a!, true)[index] +
-                                    time(a!, true)[index - 1]
-                                : time(a!, true)[index]
-                            : index > 0
-                                ? time(a!, false)[index] +
-                                    time(a!, false)[index - 1]
-                                : time(a!, false)[index]);
-                  },
-                )
-              ],
-              xValueMapper: (datas sales, _) => sales.year,
-              yValueMapper: (datas sales, _) => sales.sales,
-              dataLabelSettings: DataLabelSettings(isVisible: true)),
-        ],
-      ),
+    return SfCircularChart(
+      series: <CircularSeries>[
+        PieSeries<Data, String>(
+          dataSource: <Data>[
+            Data('Income', income),
+            Data('Expense', expense),
+          ],
+          pointColorMapper: (Data data, _) => data.label == 'Income'
+              ? Color.fromARGB(225, 0, 139, 139)
+              : Color.fromARGB(255, 237, 84, 73),
+          xValueMapper: (Data data, _) => data.label,
+          yValueMapper: (Data data, _) => data.value,
+          dataLabelSettings: DataLabelSettings(
+            isVisible: true,
+          ),
+        ),
+      ],
     );
   }
 }
 
-class datas {
-  datas(this.year, this.sales);
-  final String year;
-  final int sales;
+class Data {
+  final String label;
+  final double value;
+
+  Data(this.label, this.value);
 }

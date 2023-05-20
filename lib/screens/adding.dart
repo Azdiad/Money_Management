@@ -8,7 +8,8 @@ import 'package:money/Model/added.dart';
 import 'package:money/Widgets/Bottom%20Nav.dart';
 
 class adding extends StatefulWidget {
-  const adding({super.key});
+  final String username;
+  const adding({Key? key, required this.username}) : super(key: key);
 
   @override
   State<adding> createState() => _addingState();
@@ -65,7 +66,8 @@ class _addingState extends State<adding> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => bottomnavs(username: ''),
+                          builder: (context) =>
+                              bottomnavs(username: widget.username),
                         ),
                       );
                     },

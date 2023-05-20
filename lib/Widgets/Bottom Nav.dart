@@ -25,7 +25,7 @@ class _bottomnavsState extends State<bottomnavs> {
     _currentIndex = widget.initialIndex;
     tabs = [
       Homes(username: widget.username),
-      statistics(),
+      statistics(username: widget.username),
       transaction_history(username: widget.username),
       usersettings(username: widget.username),
     ];
@@ -94,7 +94,8 @@ class _bottomnavsState extends State<bottomnavs> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => adding(),
+                          builder: (context) =>
+                              adding(username: widget.username),
                         ),
                       );
                     },

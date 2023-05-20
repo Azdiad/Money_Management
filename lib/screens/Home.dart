@@ -36,52 +36,60 @@ class _HomesState extends State<Homes> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ValueListenableBuilder(
-            valueListenable: Box.listenable(),
-            builder: (context, value, child) {
-              return CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: _head(),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Transaction',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => bottomnavs(
-                                        initialIndex: 2,
-                                        username: '',
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Text('See all'))
-                          ]),
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (notification) {
+            notification.disallowGlow();
+            return true;
+          },
+          child: ValueListenableBuilder(
+              valueListenable: Box.listenable(),
+              builder: (context, value, child) {
+                return CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: _head(),
                     ),
-                  ),
-                  SliverList(
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Transaction',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => bottomnavs(
+                                          initialIndex: 2,
+                                          username: '',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Text('See all'))
+                            ]),
+                      ),
+                    ),
+                    SliverList(
                       delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      history = Box.values.toList().reversed.toList()[index];
-                      return getList(history, index);
-                    },
-                    childCount: Box.length > 5 ? 5 : Box.length,
-                  ))
-                ],
-              );
-            }),
+                        (context, index) {
+                          history =
+                              Box.values.toList().reversed.toList()[index];
+                          return getList(history, index);
+                        },
+                        childCount: Box.length > 5 ? 5 : Box.length,
+                      ),
+                    )
+                  ],
+                );
+              }),
+        ),
       ),
     );
   }
@@ -142,7 +150,7 @@ class _HomesState extends State<Homes> {
               ),
             ),
             Text(
-              " ${widget.username}", // Use the passed username
+              "   ${widget.username}", // Use the passed username
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 30,

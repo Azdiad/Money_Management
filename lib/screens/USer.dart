@@ -21,341 +21,349 @@ class _usersettingsState extends State<usersettings> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: Color.fromARGB(225, 0, 139, 139),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-            colors: [
-              Color.fromARGB(200, 0, 139, 139),
-              Color.fromARGB(255, 35, 232, 190),
-            ],
+        child: NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (notification) {
+        notification.disallowGlow();
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(225, 0, 139, 139),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color.fromARGB(200, 0, 139, 139),
+                Color.fromARGB(255, 35, 232, 190),
+              ],
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text(
-                'Settings',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                  child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 55),
-                    child: Text(
-                      'HELLO',
-                      style: TextStyle(
-                          color: Color.fromARGB(100, 255, 255, 255),
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 55),
-                    child: Text(
-                      'There',
-                      style: TextStyle(
-                          color: Color.fromARGB(100, 255, 255, 255),
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              )),
-              SizedBox(
-                height: 400,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Row(
+                    Text(
+                      'Settings',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                        child: Column(
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      bottomnavs(initialIndex: 2, username: ''),
-                                ),
-                              );
-                            });
-                          },
-                          child: Container(
-                            width: 250,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 15.0,
-                                  spreadRadius: 10,
-                                  offset: Offset(4, 4),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(60),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Transaction History',
-                                style: TextStyle(
-                                  letterSpacing: 2,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 55),
+                          child: Text(
+                            'HELLO',
+                            style: TextStyle(
+                                color: Color.fromARGB(100, 255, 255, 255),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 55),
+                          child: Text(
+                            'There',
+                            style: TextStyle(
+                                color: Color.fromARGB(100, 255, 255, 255),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    terms(username: widget.username),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 200,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 15.0,
-                                  spreadRadius: 10,
-                                  offset: Offset(4, 4),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(60),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Terms & Conditions',
-                                style: TextStyle(
-                                  // letterSpacing: 1,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      bottomnavs(username: widget.username),
-                                ),
-                              );
-                            });
-                          },
-                          child: Container(
-                            width: 150,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  blurRadius: 15.0,
-                                  spreadRadius: 10,
-                                  offset: Offset(4, 4),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(60),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Back',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: FlipCard(
-                            front: Container(
-                              width: 200,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 15.0,
-                                    spreadRadius: 10,
-                                    offset: Offset(4, 4),
-                                  )
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(60),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Exit From App',
-                                  style: TextStyle(
-                                    letterSpacing: 1,
-                                    fontSize: 20,
+                    )),
+                    SizedBox(
+                      height: 400,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => bottomnavs(
+                                            initialIndex: 2, username: ''),
+                                      ),
+                                    );
+                                  });
+                                },
+                                child: Container(
+                                  width: 250,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        blurRadius: 15.0,
+                                        spreadRadius: 10,
+                                        offset: Offset(4, 4),
+                                      )
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(60),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                            back: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  exit(0);
-                                });
-                              },
-                              child: Container(
-                                width: 200,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      blurRadius: 15.0,
-                                      spreadRadius: 10,
-                                      offset: Offset(4, 4),
-                                    )
-                                  ],
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(60),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Confirm',
-                                    style: TextStyle(
-                                      letterSpacing: 1,
-                                      fontSize: 20,
+                                  child: Center(
+                                    child: Text(
+                                      'Transaction History',
+                                      style: TextStyle(
+                                        letterSpacing: 2,
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          child: FlipCard(
-                            front: Container(
-                              width: 250,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 15.0,
-                                    spreadRadius: 10,
-                                    offset: Offset(4, 4),
-                                  )
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(60),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Reset Transactions',
-                                  style: TextStyle(
-                                      letterSpacing: 2,
-                                      color: Colors.redAccent,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            back: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  Box.clear();
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => usernames(),
+                                      builder: (context) =>
+                                          terms(username: widget.username),
                                     ),
                                   );
-                                });
-                              },
-                              child: Container(
-                                width: 250,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black26,
-                                      blurRadius: 15.0,
-                                      spreadRadius: 10,
-                                      offset: Offset(4, 4),
-                                    )
-                                  ],
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(60),
+                                },
+                                child: Container(
+                                  width: 200,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        blurRadius: 15.0,
+                                        spreadRadius: 10,
+                                        offset: Offset(4, 4),
+                                      )
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(60),
+                                    ),
                                   ),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Are You Sure',
-                                    style: TextStyle(
-                                        letterSpacing: 2,
-                                        color: Colors.redAccent,
+                                  child: Center(
+                                    child: Text(
+                                      'Terms & Conditions',
+                                      style: TextStyle(
+                                        // letterSpacing: 1,
                                         fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            speed: 900,
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ]),
-          ],
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => bottomnavs(
+                                            username: widget.username),
+                                      ),
+                                    );
+                                  });
+                                },
+                                child: Container(
+                                  width: 150,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black26,
+                                        blurRadius: 15.0,
+                                        spreadRadius: 10,
+                                        offset: Offset(4, 4),
+                                      )
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(60),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Back',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                child: FlipCard(
+                                  front: Container(
+                                    width: 200,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black26,
+                                          blurRadius: 15.0,
+                                          spreadRadius: 10,
+                                          offset: Offset(4, 4),
+                                        )
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(60),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Exit From App',
+                                        style: TextStyle(
+                                          letterSpacing: 1,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  back: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        exit(0);
+                                      });
+                                    },
+                                    child: Container(
+                                      width: 200,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            blurRadius: 15.0,
+                                            spreadRadius: 10,
+                                            offset: Offset(4, 4),
+                                          )
+                                        ],
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(60),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'Confirm',
+                                          style: TextStyle(
+                                            letterSpacing: 1,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                child: FlipCard(
+                                  front: Container(
+                                    width: 250,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black26,
+                                          blurRadius: 15.0,
+                                          spreadRadius: 10,
+                                          offset: Offset(4, 4),
+                                        )
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(60),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Reset Transactions',
+                                        style: TextStyle(
+                                            letterSpacing: 2,
+                                            color: Colors.redAccent,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  back: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        Box.clear();
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => usernames(),
+                                          ),
+                                        );
+                                      });
+                                    },
+                                    child: Container(
+                                      width: 250,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            blurRadius: 15.0,
+                                            spreadRadius: 10,
+                                            offset: Offset(4, 4),
+                                          )
+                                        ],
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(60),
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'Are You Sure',
+                                          style: TextStyle(
+                                              letterSpacing: 2,
+                                              color: Colors.redAccent,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  speed: 900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ]),
+            ],
+          ),
         ),
       ),
     ));
