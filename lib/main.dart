@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:money/screens/USer.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:money/Model/added.dart';
-import 'package:money/Widgets/Bottom%20Nav.dart';
+import 'package:money/screens/Username.dart';
+// import 'package:money/Widgets/Bottom%20Nav.dart';
+// import 'package:money/screens/Username.dart';
 import 'package:motion/motion.dart';
 
 // const SAVE_KEY_NAME = 'logins';
@@ -23,7 +25,8 @@ class moneymanage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: bottomnavs(),
+      // home: bottomnavs(),
+      home: usernames(),
     );
   }
 }

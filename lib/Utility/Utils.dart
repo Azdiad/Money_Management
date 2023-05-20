@@ -76,18 +76,6 @@ List<added> month() {
   return a;
 }
 
-List<added> year() {
-  List<added> a = [];
-  var history2 = Box.values.toList();
-  DateTime date = new DateTime.now();
-  for (var i = 0; i < history2.length; i++) {
-    if (history2[i].dates.year == date.year) {
-      a.add(history2[i]);
-    }
-  }
-  return a;
-}
-
 int total_chart(List<added> a) {
   var history2 = Box.values.toList();
   List a = [0, 0];

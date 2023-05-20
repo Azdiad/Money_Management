@@ -13,24 +13,26 @@ class statistics extends StatefulWidget {
 ValueNotifier kj = ValueNotifier(0);
 
 class _statisticsState extends State<statistics> {
-  List day = ['Day', 'Week', 'Month', 'Year'];
-  List f = [today(), week(), month(), year()];
+  List day = ['Day', 'Week', 'Month'];
+  List f = [today(), week(), month()];
   List<added> a = [];
   int index_Color = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: kj,
-          builder: (context, dynamic value, Widget? child) {
-            a = f[value];
-            return Scaffold(
-              body: SafeArea(
-                child: custom(),
-              ),
-            );
-          },
+    return SafeArea(
+      child: Scaffold(
+        body: SafeArea(
+          child: ValueListenableBuilder(
+            valueListenable: kj,
+            builder: (context, dynamic value, Widget? child) {
+              a = f[value];
+              return Scaffold(
+                body: SafeArea(
+                  child: custom(),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -60,7 +62,7 @@ class _statisticsState extends State<statistics> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ...List.generate(
-                    4,
+                    3,
                     (index) {
                       return GestureDetector(
                         onTap: () {

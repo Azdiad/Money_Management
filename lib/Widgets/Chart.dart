@@ -36,11 +36,7 @@ class _chartsState extends State<charts> {
         b = false;
         j = true;
         break;
-      case 3:
-        a = year();
 
-        j = false;
-        break;
       default:
     }
 
