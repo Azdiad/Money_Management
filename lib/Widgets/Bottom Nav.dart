@@ -7,25 +7,28 @@ import 'package:money/screens/adding.dart';
 
 class bottomnavs extends StatefulWidget {
   final int initialIndex;
+  final String username;
 
-  bottomnavs({this.initialIndex = 0});
+  bottomnavs({this.initialIndex = 0, required this.username});
 
   @override
   _bottomnavsState createState() => _bottomnavsState();
 }
 
 class _bottomnavsState extends State<bottomnavs> {
-  final List tabs = [
-    Homes(),
-    statistics(),
-    transaction_history(),
-    usersettings()
-  ];
+  late List<Widget> tabs;
   int _currentIndex = 0;
+
   @override
   void initState() {
     super.initState();
     _currentIndex = widget.initialIndex;
+    tabs = [
+      Homes(username: widget.username),
+      statistics(),
+      transaction_history(),
+      usersettings(),
+    ];
   }
 
   @override

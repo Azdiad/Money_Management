@@ -1,8 +1,8 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:money/Widgets/Bottom%20Nav.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 class usernames extends StatefulWidget {
   usernames({super.key});
@@ -41,8 +41,8 @@ class _usernamesState extends State<usernames> {
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                         colors: [
-                          Color.fromARGB(214, 198, 84, 243),
                           Color.fromARGB(255, 39, 222, 183),
+                          Color.fromARGB(255, 136, 255, 215),
                         ],
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -80,7 +80,13 @@ class _usernamesState extends State<usernames> {
                               ElevatedButton.icon(
                                 onPressed: () {
                                   if (_formkey.currentState!.validate()) {
-                                    checking(context);
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => bottomnavs(
+                                            username: _usernameController.text),
+                                      ),
+                                    );
                                   }
                                 },
                                 icon: const Icon(
@@ -101,25 +107,11 @@ class _usernamesState extends State<usernames> {
   }
 
   void checking(BuildContext ctx) async {
-    final _username = _usernameController.text;
-
-    if (_usernameController != null) {
+    if (_usernameController.text.isNotEmpty) {
       Navigator.of(ctx).pushReplacement(
-        MaterialPageRoute(builder: (ctx1) => bottomnavs()),
-      );
-    } else {
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: Colors.red,
-          content: Text(
-            'Wrogn Information..',
-            style: TextStyle(fontSize: 15, color: Colors.black),
-          ),
-          margin: EdgeInsets.all(
-            30,
-          ),
-        ),
+        MaterialPageRoute(
+            builder: (ctx1) => bottomnavs(
+                initialIndex: 0, username: _usernameController.text)),
       );
     }
   }

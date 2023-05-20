@@ -65,7 +65,7 @@ class _addingState extends State<adding> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => bottomnavs(),
+                          builder: (context) => bottomnavs(username: ''),
                         ),
                       );
                     },
@@ -242,7 +242,7 @@ class _addingState extends State<adding> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  bottomnavs(),
+                                                  bottomnavs(username: ''),
                                             ),
                                           );
                                           Box.add(add);

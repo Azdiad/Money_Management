@@ -7,7 +7,9 @@ import 'package:money/Widgets/Bottom%20Nav.dart';
 import 'package:motion/motion.dart';
 
 class Homes extends StatefulWidget {
-  const Homes({super.key});
+  final String username;
+
+  const Homes({Key? key, required this.username}) : super(key: key);
 
   @override
   State<Homes> createState() => _HomesState();
@@ -58,8 +60,10 @@ class _HomesState extends State<Homes> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          bottomnavs(initialIndex: 2),
+                                      builder: (context) => bottomnavs(
+                                        initialIndex: 2,
+                                        username: '',
+                                      ),
                                     ),
                                   );
                                 },
@@ -112,18 +116,19 @@ class _HomesState extends State<Homes> {
   }
 
   Widget _head() {
-    return //
-        Stack(
+    return Stack(
       alignment: Alignment.topLeft,
       children: [
         Container(
           height: 400,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              color: Color.fromARGB(180, 0, 139, 139),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(60),
-                  bottomRight: Radius.circular(60))),
+            color: Color.fromARGB(180, 0, 139, 139),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(60),
+              bottomRight: Radius.circular(60),
+            ),
+          ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,16 +136,18 @@ class _HomesState extends State<Homes> {
             Text(
               " HELLO",
               style: TextStyle(
-                  color: Color.fromARGB(100, 255, 255, 255),
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
+                color: Color.fromARGB(100, 255, 255, 255),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Text(
-              " Mohamed Azad",
+              " ${widget.username}", // Use the passed username
               style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

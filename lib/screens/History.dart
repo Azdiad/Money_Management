@@ -91,7 +91,52 @@ class _transaction_historyState extends State<transaction_history> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text('All'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  _filterTransactionsByType('Income');
+                                },
+                                child: Text(
+                                  'Income',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              GestureDetector(
+                                onTap: () {
+                                  _filterTransactionsByType('Expense');
+                                },
+                                child: Text(
+                                  'Expense',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              GestureDetector(
+                                onTap: () {
+                                  _filterTransactionsByType('');
+                                },
+                                child: Text(
+                                  'All',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -156,13 +201,39 @@ class _transaction_historyState extends State<transaction_history> {
             ),
           ),
           child: Center(
-              child: Text(
-            'Transaction History',
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
-          )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Transaction History',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
         ),
       ],
     );
+  }
+
+  void _filterTransactionsByType(String type) {
+    setState(() {
+      if (type.isEmpty) {
+        _transactionslist = Box.values.toList().cast<added>().reversed.toList();
+      } else {
+        _transactionslist = Box.values
+            .cast<added>()
+            .where((transaction) =>
+                transaction.type.toLowerCase() == type.toLowerCase())
+            .toList()
+            .reversed
+            .toList();
+      }
+    });
   }
 }
