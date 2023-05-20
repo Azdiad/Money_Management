@@ -8,7 +8,9 @@ import 'package:money/Model/added.dart';
 import 'package:money/screens/Aftertaplist.dart';
 
 class transaction_history extends StatefulWidget {
-  const transaction_history({super.key});
+  final String username;
+  const transaction_history({Key? key, required this.username})
+      : super(key: key);
 
   @override
   State<transaction_history> createState() => _transaction_historyState();

@@ -10,7 +10,8 @@ import 'package:money/screens/Terms.dart';
 import 'package:money/screens/Username.dart';
 
 class usersettings extends StatefulWidget {
-  const usersettings({super.key});
+  final String username;
+  const usersettings({Key? key, required this.username}) : super(key: key);
 
   @override
   State<usersettings> createState() => _usersettingsState();
@@ -125,7 +126,8 @@ class _usersettingsState extends State<usersettings> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => terms(),
+                                builder: (context) =>
+                                    terms(username: widget.username),
                               ),
                             );
                           },
@@ -168,7 +170,7 @@ class _usersettingsState extends State<usersettings> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      bottomnavs(username: ''),
+                                      bottomnavs(username: widget.username),
                                 ),
                               );
                             });

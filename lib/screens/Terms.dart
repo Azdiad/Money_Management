@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:money/screens/USer.dart';
 
 class terms extends StatelessWidget {
-  const terms({super.key});
+  final String username;
+  const terms({Key? key, required this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class terms extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => usersettings(),
+                        builder: (context) => usersettings(username: username),
                       ),
                     );
                   },

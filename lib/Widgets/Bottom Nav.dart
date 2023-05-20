@@ -26,8 +26,8 @@ class _bottomnavsState extends State<bottomnavs> {
     tabs = [
       Homes(username: widget.username),
       statistics(),
-      transaction_history(),
-      usersettings(),
+      transaction_history(username: widget.username),
+      usersettings(username: widget.username),
     ];
   }
 
