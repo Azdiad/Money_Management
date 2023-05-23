@@ -57,8 +57,8 @@ class _transaction_historyState extends State<transaction_history> {
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
                 colors: [
+                  Color.fromARGB(171, 30, 183, 225),
                   Color.fromRGBO(35, 237, 118, 0.767),
-                  Color.fromARGB(183, 13, 192, 241),
                 ],
               ),
             ),

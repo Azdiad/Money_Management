@@ -269,6 +269,7 @@ class _usersettingsState extends State<usersettings> {
                                         child: Text(
                                           'Confirm',
                                           style: TextStyle(
+                                            fontWeight: FontWeight.bold,
                                             letterSpacing: 1,
                                             fontSize: 20,
                                           ),
@@ -276,6 +277,7 @@ class _usersettingsState extends State<usersettings> {
                                       ),
                                     ),
                                   ),
+                                  speed: 900,
                                 ),
                               )
                             ],

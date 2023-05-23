@@ -243,8 +243,8 @@ class _addingState extends State<adding> {
                                           Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  bottomnavs(username: ''),
+                                              builder: (context) => bottomnavs(
+                                                  username: widget.username),
                                             ),
                                           );
                                           Box.add(add);
