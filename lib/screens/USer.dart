@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:infinite_card_rotation/infinite_card_rotation.dart';
 import 'package:money/Utility/Utils.dart';
 import 'package:money/Widgets/Bottom%20Nav.dart';
+// import 'package:money/Widgets/Chart.dart';
 // import 'package:money/screens/History.dart';
 import 'package:money/screens/Terms.dart';
 import 'package:money/screens/Username.dart';
@@ -91,7 +92,8 @@ class _usersettingsState extends State<usersettings> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => bottomnavs(
-                                            initialIndex: 2, username: ''),
+                                            initialIndex: 2,
+                                            username: widget.username),
                                       ),
                                     );
                                   });
@@ -318,6 +320,7 @@ class _usersettingsState extends State<usersettings> {
                                     onTap: () {
                                       setState(() {
                                         Box.clear();
+                                        // Data.clearAll;
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(

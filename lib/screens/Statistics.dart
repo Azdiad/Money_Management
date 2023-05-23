@@ -28,6 +28,7 @@ class _statisticsState extends State<statistics> {
             valueListenable: kj,
             builder: (context, dynamic value, Widget? child) {
               a = f[value];
+              a = a.reversed.toList();
               return Scaffold(
                 body: SafeArea(
                   child: custom(),

@@ -54,11 +54,11 @@ class _transaction_historyState extends State<transaction_history> {
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
+                begin: Alignment.bottomCenter,
                 end: Alignment.topRight,
                 colors: [
-                  Color.fromARGB(171, 30, 183, 225),
-                  Color.fromRGBO(35, 237, 118, 0.767),
+                  Color.fromRGBO(255, 255, 255, 1),
+                  Color.fromARGB(204, 30, 183, 225),
                 ],
               ),
             ),

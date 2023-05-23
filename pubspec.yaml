@@ -46,6 +46,7 @@ dependencies:
   shimmer_animation: ^2.1.0+1
   metaballs: ^1.5.0
   infinite_card_rotation: ^1.0.3
+  animated_text_kit: ^4.2.2
   
   
 
