@@ -23,7 +23,7 @@ class _statisticsState extends State<statistics> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SafeArea(
+        body: Container(
           child: ValueListenableBuilder(
             valueListenable: kj,
             builder: (context, dynamic value, Widget? child) {
@@ -104,8 +104,6 @@ class _statisticsState extends State<statistics> {
                 height: 20,
               ),
               PieChart(
-                income: Income().toDouble(),
-                expense: Expense().toDouble(),
                 indexx: index_Color,
               ),
               SizedBox(

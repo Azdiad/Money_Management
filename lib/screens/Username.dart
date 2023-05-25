@@ -88,6 +88,9 @@ class _usernamesState extends State<usernames> {
                                     );
                                   }
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color.fromARGB(200, 0, 139, 139),
+                                ),
                                 icon: const Icon(
                                     Icons.arrow_circle_right_rounded),
                                 label: const Text('Next'),

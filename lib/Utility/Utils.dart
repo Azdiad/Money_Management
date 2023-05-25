@@ -113,3 +113,23 @@ List time(List<added> history2, bool hour) {
 
   return total;
 }
+
+double calculateIncome(List<added> transactionData) {
+  double income = 0;
+  for (var transaction in transactionData) {
+    if (transaction.type == 'Income') {
+      income += double.parse(transaction.amount);
+    }
+  }
+  return income;
+}
+
+double calculateExpense(List<added> transactionData) {
+  double expense = 0;
+  for (var transaction in transactionData) {
+    if (transaction.type != 'Income') {
+      expense += double.parse(transaction.amount);
+    }
+  }
+  return expense;
+}

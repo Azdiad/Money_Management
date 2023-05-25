@@ -67,7 +67,7 @@ class _HomesState extends State<Homes> {
                                       MaterialPageRoute(
                                         builder: (context) => bottomnavs(
                                           initialIndex: 2,
-                                          username: '',
+                                          username: widget.username,
                                         ),
                                       ),
                                     );
