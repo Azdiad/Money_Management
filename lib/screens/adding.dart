@@ -211,54 +211,37 @@ class _addingState extends State<adding> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                GestureDetector(
-                                  // onTap: () async {
-                                  //   if (_items == null) {
-                                  //     // _createitems
-                                  //     _addeddatas;
-                                  //     (
-                                  //       {
-                                  //         "amount": _amountController.text,
-                                  //         "description":
-                                  //             _descriptionController.text,
-                                  //         "date": date_time(context),
-                                  //       },
-                                  //     );
-                                  //   }
-                                  //   ;
-                                  // },
-                                  child: SizedBox(
-                                    width: 100,
-                                    height: 50,
-                                    child: FloatingActionButton(
-                                      heroTag: 'bottomnavs',
-                                      onPressed: () {
-                                        setState(() {
-                                          var add = added(
-                                              amount: _amountController.text,
-                                              type: selectedItem!,
-                                              description:
-                                                  _descriptionController.text,
-                                              dates: date);
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => bottomnavs(
-                                                  username: widget.username),
-                                            ),
-                                          );
-                                          Box.add(add);
-                                          // Box.clear();
-                                          // print(added);
-                                        });
-                                      },
-                                      backgroundColor: const Color.fromARGB(
-                                          255, 0, 139, 139),
-                                      shape: const ContinuousRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(30))),
-                                      child: const Text('Add'),
-                                    ),
+                                SizedBox(
+                                  width: 100,
+                                  height: 50,
+                                  child: FloatingActionButton(
+                                    heroTag: 'bottomnavs',
+                                    onPressed: () {
+                                      setState(() {
+                                        var add = added(
+                                            amount: _amountController.text,
+                                            type: selectedItem!,
+                                            description:
+                                                _descriptionController.text,
+                                            dates: date);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => bottomnavs(
+                                                username: widget.username),
+                                          ),
+                                        );
+                                        Box.add(add);
+                                        // Box.clear();
+                                        // print(added);
+                                      });
+                                    },
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 0, 139, 139),
+                                    shape: const ContinuousRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30))),
+                                    child: const Text('Add'),
                                   ),
                                 )
                               ],
@@ -310,5 +293,3 @@ class _addingState extends State<adding> {
     );
   }
 }
-
-Future<void> details(BuildContext context) async {}

@@ -150,7 +150,7 @@ class _HomesState extends State<Homes> {
               ),
             ),
             Text(
-              "   ${widget.username}", // Use the passed username
+              "   ${widget.username}",
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 30,
