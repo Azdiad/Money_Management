@@ -215,7 +215,7 @@ class _HomesState extends State<Homes> {
                         width: 5,
                       ),
                       Text(
-                        '₹ ${total()}',
+                        '₹ ${total().toStringAsFixed(1)}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 25,
@@ -268,7 +268,7 @@ class _HomesState extends State<Homes> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: Text(
-                          '₹ ${Income()}',
+                          '₹ ${Income().toStringAsFixed(1)}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -278,7 +278,7 @@ class _HomesState extends State<Homes> {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Text(
-                          '₹ ${Expense()}',
+                          '₹ ${Expense().toStringAsFixed(1)}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,

@@ -16,19 +16,20 @@ class terms extends StatelessWidget {
         return true;
       },
       child: Scaffold(
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [
-                  Color.fromARGB(205, 146, 246, 246),
-                  Color.fromARGB(211, 10, 255, 202),
-                ],
-              ),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                Color.fromARGB(205, 146, 246, 246),
+                Color.fromARGB(211, 10, 255, 202),
+              ],
             ),
+          ),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 Row(

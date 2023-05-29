@@ -1,47 +1,49 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:money/Model/added.dart';
 
-int totals = 0;
+double totals = 0;
 
 final Box = Hive.box<added>('data');
-int total() {
+double total() {
   var history2 = Box.values.toList();
 
-  List<int> a = [0, 0];
+  double totalAmount = 0;
   for (var i = 0; i < history2.length; i++) {
-    a.add(history2[i].type == 'Income'
-        ? int.parse(history2[i].amount)
-        : int.parse(history2[i].amount) * -1);
+    if (history2[i].type == 'Income') {
+      totalAmount += double.parse(history2[i].amount);
+    } else {
+      totalAmount -= double.parse(history2[i].amount);
+    }
   }
-  totals = a.reduce((value, element) => value + element);
-  return totals;
+  return totalAmount;
 }
 
-int Income() {
+double Income() {
   var history2 = Box.values.toList();
-  List a = [0, 0];
+  double incomeAmount = 0;
   for (var i = 0; i < history2.length; i++) {
-    a.add(history2[i].type == 'Income' ? int.parse(history2[i].amount) : 0);
+    if (history2[i].type == 'Income') {
+      incomeAmount += double.parse(history2[i].amount);
+    }
   }
-  totals = a.reduce((value, element) => value + element);
-  return totals;
+  return incomeAmount;
 }
 
-int Expense() {
+double Expense() {
   var history2 = Box.values.toList();
-  List a = [0, 0];
+  double expenseAmount = 0;
   for (var i = 0; i < history2.length; i++) {
-    a.add(
-        history2[i].type == 'Income' ? 0 : int.parse(history2[i].amount) * -1);
+    if (history2[i].type != 'Income') {
+      expenseAmount += double.parse(history2[i].amount);
+    }
   }
-  totals = a.reduce((value, element) => value + element);
-  return totals;
+  return expenseAmount;
 }
 
 List<added> today() {
   List<added> a = [];
   var history2 = Box.values.toList();
-  DateTime date = new DateTime.now();
+  DateTime date = DateTime.now();
   for (var i = 0; i < history2.length; i++) {
     if (history2[i].dates.day == date.day) {
       a.add(history2[i]);
@@ -53,7 +55,7 @@ List<added> today() {
 List<added> week() {
   List<added> a = [];
 
-  DateTime date = new DateTime.now();
+  DateTime date = DateTime.now();
   var history2 = Box.values.toList();
   for (var i = 0; i < history2.length; i++) {
     if (date.day - 7 <= history2[i].dates.day &&
@@ -67,7 +69,7 @@ List<added> week() {
 List<added> month() {
   List<added> a = [];
   var history2 = Box.values.toList();
-  DateTime date = new DateTime.now();
+  DateTime date = DateTime.now();
   for (var i = 0; i < history2.length; i++) {
     if (history2[i].dates.month == date.month) {
       a.add(history2[i]);
@@ -76,21 +78,20 @@ List<added> month() {
   return a;
 }
 
-int total_chart(List<added> a) {
+double total_chart(List<added> a) {
   var history2 = Box.values.toList();
-  List a = [0, 0];
+  double totalAmount = 0;
   for (var i = 0; i < history2.length; i++) {
-    a.add(history2[i].type == 'Income'
-        ? int.parse(history2[i].amount)
-        : int.parse(history2[i].amount) * -1);
+    totalAmount += history2[i].type == 'Income'
+        ? double.parse(history2[i].amount)
+        : -double.parse(history2[i].amount);
   }
-  totals = a.reduce((value, element) => value + element);
-  return totals;
+  return totalAmount;
 }
 
-List time(List<added> history2, bool hour) {
+List<double> time(List<added> history2, bool hour) {
   List<added> a = [];
-  List total = [];
+  List<double> total = [];
   int counter = 0;
   for (var c = 0; c < history2.length; c++) {
     for (var i = c; i < history2.length; i++) {

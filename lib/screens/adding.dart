@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -28,6 +28,9 @@ class _addingState extends State<adding> {
   final TextEditingController _descriptionController = TextEditingController();
   final List<Map<String, dynamic>> _addeddatas = [];
 
+  bool _inputdatas = false;
+
+  final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -105,148 +108,184 @@ class _addingState extends State<adding> {
                                 spreadRadius: 3,
                               )
                             ]),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            Container(
-                              width: 300,
-                              decoration: BoxDecoration(
-                                  border: Border.all(width: 1),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                  ),
-                                  DropdownButton<String>(
-                                    hint: const Text(
-                                      'Income or Expense',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                        child: Form(
+                          key: _formkey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    border: Border.all(width: 1),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(10)),
-                                    value: selectedItem,
-                                    onChanged: (newValue) {
-                                      setState(() {
-                                        selectedItem = newValue;
-                                      });
-                                    },
-                                    items: _items.map((item) {
-                                      return DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(item),
-                                      );
-                                    }).toList(),
+                                        Radius.circular(10))),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                    ),
+                                    DropdownButton<String>(
+                                      hint: const Text(
+                                        '* Select ',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      value: selectedItem,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          selectedItem = newValue;
+                                        });
+                                      },
+                                      items: _items.map((item) {
+                                        return DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(item),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  date_time(context),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(width: 1),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    height: 50,
+                                    width: 300,
+                                    child: TextFormField(
+                                      controller: _amountController,
+                                      keyboardType:
+                                          TextInputType.numberWithOptions(
+                                              decimal: true),
+                                      decoration: const InputDecoration(
+                                        hintText: '* Amount',
+                                        border: InputBorder.none,
+                                      ),
+                                      textInputAction: TextInputAction.next,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Please enter an amount';
+                                        }
+
+                                        if (double.tryParse(value) == null) {
+                                          return 'Please enter a valid amount';
+                                        }
+                                        return null;
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                date_time(context),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(width: 1),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10))),
-                                  height: 50,
-                                  width: 300,
-                                  child: TextField(
-                                    controller: _amountController,
-                                    keyboardType: TextInputType.number,
-                                    decoration: const InputDecoration(
-                                      hintText: 'Amount',
-                                      border: InputBorder.none,
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(width: 1),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10))),
+                                    height: 50,
+                                    width: 300,
+                                    child: TextFormField(
+                                      controller: _descriptionController,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Description',
+                                        border: InputBorder.none,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(width: 1),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10))),
-                                  height: 50,
-                                  width: 300,
-                                  child: TextField(
-                                    controller: _descriptionController,
-                                    decoration: const InputDecoration(
-                                      hintText: 'Description',
-                                      border: InputBorder.none,
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 40),
+                                    child: Text(
+                                      '* Required',
+                                      style: TextStyle(color: Colors.red),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 100,
-                                  height: 50,
-                                  child: FloatingActionButton(
-                                    heroTag: 'bottomnavs',
-                                    onPressed: () {
-                                      setState(() {
-                                        var add = added(
-                                            amount: _amountController.text,
-                                            type: selectedItem!,
-                                            description:
-                                                _descriptionController.text,
-                                            dates: date);
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => bottomnavs(
-                                                username: widget.username),
-                                          ),
-                                        );
-                                        Box.add(add);
-                                        // Box.clear();
-                                        // print(added);
-                                      });
-                                    },
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 0, 139, 139),
-                                    shape: const ContinuousRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(30))),
-                                    child: const Text('Add'),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 100,
+                                    height: 50,
+                                    child: FloatingActionButton(
+                                      heroTag: 'bottomnavs',
+                                      onPressed: () {
+                                        if (_formkey.currentState!.validate()) {
+                                          setState(() {
+                                            var add = added(
+                                              amount: _amountController.text,
+                                              type: selectedItem!,
+                                              description:
+                                                  _descriptionController.text,
+                                              dates: date,
+                                            );
+
+                                            double amount = double.parse(
+                                                _amountController.text);
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    bottomnavs(
+                                                        username:
+                                                            widget.username),
+                                              ),
+                                            );
+                                            Box.add(add);
+                                            // Box.clear();
+                                            // print(added);
+                                          });
+                                        }
+                                      },
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 0, 139, 139),
+                                      shape: const ContinuousRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(30))),
+                                      child: const Text('Add'),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
